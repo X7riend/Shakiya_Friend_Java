@@ -2,7 +2,7 @@ package com.company.chatterbook.Objects;
 
 public class ChatterPost 
 {
-    public ChatterPost(String s)
+    public ChatterPost(String text)
     {
         this.text = text;
     }

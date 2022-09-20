@@ -5,6 +5,7 @@ import com.company.chatterbook.Objects.User;
 import com.company.chatterbook.Objects.ChatterPost;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
@@ -43,40 +44,39 @@ public class ChatterBookController {
         userList = Arrays.asList(luis, sue, timothy, george, arturo, mariella, paolo, tri, jane, carol, carl);
     }
 
-    @GetMapping(value = "/users")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getUserList()
     {
         return userList;
     }
 
-    @GetMapping(value = "/users/{name}")
-    public User getUserByName (@PathVariable String name)
+    @RequestMapping(value = "/users/{name}", method = RequestMethod.GET)
+    public List<User> getUserByName (@PathVariable String name)
     {
-            User searchedUser = null;
-            searchedUser.setName(name);
+            List<User> searchedUsers = new ArrayList<>();
             for(User users : userList)
             {
-                if(searchedUser.getName().equals(users.getName()))
+                if(users.getName().equals(name))
                 {
-                    searchedUser = users;
+                    searchedUsers.add(users);
                 }
             }
 
-        return searchedUser;
+        return searchedUsers;
     }
-    @GetMapping(value = "users/chatterPosts/{name}")
+    @RequestMapping(value = "users/chatterposts/{name}", method = RequestMethod.GET)
     public List<ChatterPost> getChatterPosts(@PathVariable String name)
     {
-        User searchedUser = null;
-        searchedUser.setName(name);
+        List<ChatterPost> userPost = null;
+
 
         for (User userSearch : userList)
         {
-            if(searchedUser.getName().equals(userSearch.getName()));
+            if(userSearch.getName().equals(name))
             {
-                searchedUser = userSearch;
+                userPost = userSearch.getChatterPosts();
             }
         }
-        return searchedUser.getChatterPosts();
+        return userPost;
     }
 }

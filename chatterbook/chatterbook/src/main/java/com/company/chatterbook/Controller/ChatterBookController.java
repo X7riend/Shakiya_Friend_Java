@@ -50,29 +50,33 @@ public class ChatterBookController {
     }
 
     @GetMapping(value = "/users/{name}")
-    public String getUserByName (@PathVariable String name)
+    public User getUserByName (@PathVariable String name)
     {
+            User searchedUser = null;
+            searchedUser.setName(name);
             for(User users : userList)
             {
-                if(name.equals(users.getName()))
+                if(searchedUser.getName().equals(users.getName()))
                 {
-                    return users.getName();
+                    searchedUser = users;
                 }
             }
 
-        return name;
+        return searchedUser;
     }
     @GetMapping(value = "users/chatterPosts/{name}")
     public List<ChatterPost> getChatterPosts(@PathVariable String name)
     {
-        List<ChatterPost> matchedUserPost = null;
+        User searchedUser = null;
+        searchedUser.setName(name);
+
         for (User userSearch : userList)
         {
-            if(userSearch.getName().equals(name));
+            if(searchedUser.getName().equals(userSearch.getName()));
             {
-                matchedUserPost = userSearch.getChatterPosts();
+                searchedUser = userSearch;
             }
         }
-        return matchedUserPost;
+        return searchedUser.getChatterPosts();
     }
 }

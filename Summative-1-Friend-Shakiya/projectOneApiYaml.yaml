@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /magic:
+    post:
+      tags:
+        - answer-controller
+      operationId: getMagicAnswer
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                type: string
+  /word:
+    get:
+      tags:
+        - definition-controller
+      operationId: getWords
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /quote:
+    get:
+      tags:
+        - quote-controller
+      operationId: getQuotes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+components: {}

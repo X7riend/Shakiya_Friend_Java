@@ -1,6 +1,6 @@
-package com.company.module9challenge.Repository;
+package com.company.M9ChallengeFriendShakiya.Repository;
 
-import com.company.module9challenge.Model.Customer;
+import com.company.M9ChallengeFriendShakiya.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,3 +13,4 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>
     List<Customer> findAllCustomersByState(String state);
 
 }
+

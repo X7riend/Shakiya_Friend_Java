@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -17,11 +20,20 @@ public class Book implements Serializable
     private int ID;
 
     private String isbn;
-    private String publishDate;
+
+
+
+    private LocalDate publishDate;
+
+    @Column(name = "author_id")
     private int authorID;
+
     private String title;
+
+    @Column(name = "publisher_id")
     private int publisherID;
-    private double price;
+
+    private BigDecimal price;
 
 
     // Getters and Setters
@@ -41,11 +53,11 @@ public class Book implements Serializable
         this.isbn = isbn;
     }
 
-    public String getPublishDate() {
+    public LocalDate getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(String publishDate) {
+    public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
     }
 
@@ -73,22 +85,23 @@ public class Book implements Serializable
         this.publisherID = publisherID;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     // Hashcode and Equals
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return ID == book.ID && authorID == book.authorID && publisherID == book.publisherID && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(title, book.title);
+        return ID == book.ID && authorID == book.authorID && publisherID == book.publisherID && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(title, book.title) && Objects.equals(price, book.price);
     }
 
     @Override

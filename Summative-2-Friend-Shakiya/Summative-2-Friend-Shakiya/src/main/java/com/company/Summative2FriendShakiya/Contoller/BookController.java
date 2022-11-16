@@ -23,10 +23,23 @@ public class BookController
     }
 
     // Read
-    @GetMapping("/books{id}")
+    @GetMapping("/books/{id}")
     public Book getBookByID(@PathVariable int ID)
     {
         Optional<Book> returnVal = repo.findById(ID);
+        if(returnVal.isPresent())
+        {
+            return returnVal.get();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    @GetMapping("/books/author/{authorID}")
+    public Book getBookByAuthorID(@PathVariable int authorID)
+    {
+        Optional<Book> returnVal = repo.findById(authorID);
         if(returnVal.isPresent())
         {
             return returnVal.get();

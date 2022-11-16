@@ -2,14 +2,17 @@ package com.company.Summative2FriendShakiya.Contoller;
 
 import com.company.Summative2FriendShakiya.Model.Author;
 import com.company.Summative2FriendShakiya.Repository.AuthorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class AuthorController
 {
+    @Autowired
     AuthorRepository repo;
 
     // Read
